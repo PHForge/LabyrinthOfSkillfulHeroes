@@ -1,0 +1,14 @@
+MSG_WELCOME=Welcome to Labyrinth of Skillful Heroes!
+MENU_NEW_GAME=New Game
+MENU_LOAD=Load Game
+MENU_SETTINGS=Settings
+MENU_CREDITS=Credits
+MENU_QUIT=Quit
+MENU_CHOICE=Enter your choice
+SETTINGS_LANG=Choose language
+SETTINGS_DIFFICULTY=Choose difficulty
+GAME_ACTIONS=Enter action
+MSG_ATTACK=You attack the enemy!
+MSG_HEAL=You heal yourself!
+GAME_QUIT=Quit
+GAME_WIN=You reached the exit! Congratulations!

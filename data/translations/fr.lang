@@ -1,0 +1,14 @@
+MSG_WELCOME=Bienvenue dans le Labyrinthe des Héros Habile !
+MENU_NEW_GAME=Nouvelle Partie
+MENU_LOAD=Charger Partie
+MENU_SETTINGS=Paramètres
+MENU_CREDITS=Crédits
+MENU_QUIT=Quitter
+MENU_CHOICE=Entrez votre choix
+SETTINGS_LANG=Choisir la langue
+SETTINGS_DIFFICULTY=Choisir la difficulté
+GAME_ACTIONS=Entrez une action
+MSG_ATTACK=Vous attaquez l'ennemi !
+MSG_HEAL=Vous vous soignez !
+GAME_QUIT=Quitter
+GAME_WIN=Vous avez atteint la sortie ! Félicitations !
