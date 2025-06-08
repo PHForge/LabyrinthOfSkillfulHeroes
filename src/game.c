@@ -11,12 +11,12 @@ void game_loop(GameState *game) {
     char input;
     while (1) {
         display_maze(game->maze);
-        printf("%s (1: %s, 2: %s, q: %s): ", get_text(trans, trans_count, "GAME_ACTIONS"), 
+        printf("\n%s (1: %s, 2: %s, e: %s): ", get_text(trans, trans_count, "GAME_ACTIONS"), 
                get_text(trans, trans_count, "MSG_ATTACK"), get_text(trans, trans_count, "MSG_HEAL"), 
                get_text(trans, trans_count, "GAME_QUIT"));
         scanf("%c", &input);
         clear_input_buffer();
-        if (input == 'q') break;
+        if (input == 'e') break;
         else if (input == '1') {
             Skill *skill = game->skills->head;
             while (skill && strcmp(skill->name, "attack") != 0) skill = skill->next;

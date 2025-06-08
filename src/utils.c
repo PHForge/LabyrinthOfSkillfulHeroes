@@ -41,7 +41,7 @@ void display_banner(void) {
     printf(" 88888888888888888888888888888888888888888888888888888888888888888888888\n");
     printf(" 888888888888888888888 Labyrinth of Skillful Heroes 88888888888888888888\n");
     printf(" 88888888888888888888888888888888888888888888888888888888888888888888888\n");
-    printf("\n                                                           by PHForge\n\n");
+    printf("\n                                                             by PHForge\n");
 }
 
 void display_credit(void) {
