@@ -5,6 +5,8 @@
 #include "../include/game.h"
 #include "../include/utils.h"
 
+// Game loop function
+// This function handles the main game loop, allowing the player to interact with the maze and use skills.
 void game_loop(GameState *game) {
     int trans_count;
     Translation *trans = load_language(game->lang, &trans_count);
@@ -36,6 +38,8 @@ void game_loop(GameState *game) {
     free_translations(trans, trans_count);
 }
 
+// Attack function
+// This function simulates an attack action, displaying a message and reducing the player's health.
 void attack(GameState *game) {
     int trans_count;
     Translation *trans = load_language(game->lang, &trans_count);
@@ -43,6 +47,8 @@ void attack(GameState *game) {
     free_translations(trans, trans_count);
 }
 
+// Heal function
+// This function simulates a healing action, restoring a portion of the player's health and displaying a message.
 void heal(GameState *game) {
     int trans_count;
     Translation *trans = load_language(game->lang, &trans_count);
@@ -51,6 +57,8 @@ void heal(GameState *game) {
     free_translations(trans, trans_count);
 }
 
+// Skill creation and management functions
+// These functions handle the creation, addition, removal, and execution of skills in the game.
 Skill *create_skill(char *name, void (*action)(GameState *), SkillData data) {
     Skill *skill = malloc(sizeof(Skill));
     skill->name = str_duplicate(name);
@@ -60,11 +68,15 @@ Skill *create_skill(char *name, void (*action)(GameState *), SkillData data) {
     return skill;
 }
 
+// Add a skill to the skill list
+// This function adds a new skill to the beginning of the skill list.
 void add_skill(SkillList *list, Skill *skill) {
     skill->next = list->head;
     list->head = skill;
 }
 
+// Remove a skill from the skill list by name
+// This function searches for a skill by name and removes it from the list if found.
 void remove_skill(SkillList *list, char *name) {
     Skill *current = list->head, *prev = NULL;
     while (current && strcmp(current->name, name) != 0) {
@@ -78,10 +90,14 @@ void remove_skill(SkillList *list, char *name) {
     free(current);
 }
 
+// Execute a skill action
+// This function calls the action associated with a skill, passing the current game state.
 void execute_skill(Skill *skill, GameState *game) {
     skill->action(game); // Compatible avec GameState *
 }
 
+// Free the skill list
+// This function iterates through the skill list, freeing each skill and its associated resources.
 void free_skills(SkillList *list) {
     Skill *current = list->head;
     while (current) {

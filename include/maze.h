@@ -1,12 +1,10 @@
 #ifndef MAZE_H
 #define MAZE_H
 
-//#include "../include/.h" 
-
 typedef struct {
-    int rows, cols;
-    char **grid; // Dynamic 2D grid
-    int player_row, player_col;
+    int rows, cols;                 // Dimensions of the maze
+    char **grid;                    // 2D array representing the maze grid
+    int player_row, player_col;     // Player's current position in the maze
 } Maze;
 
 Maze *create_maze(int rows, int cols);

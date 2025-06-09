@@ -3,34 +3,34 @@
 
 #include "../include/maze.h"
 
-// Déclaration anticipée de la structure GameState avec un tag explicite
+// Forward declaration of the GameState structure with an explicit tag
 struct GameState;
 
-// Définir le typedef pour GameState
+// Declare the GameState type to avoid circular dependency issues
 typedef struct GameState GameState;
 
 typedef union {
-    int damage;      // Pour la compétence d'attaque
-    int heal_amount; // Pour la compétence de soin
+    int damage;                     // For the attack skill
+    int heal_amount;                // For the heal skill
 } SkillData;
 
 typedef struct Skill {
-    char *name;
-    void (*action)(GameState *); // Utilise le typedef GameState *
-    SkillData data;
-    struct Skill *next;
+    char *name;                     // Skill name
+    void (*action)(GameState *);    // Function pointer for skill action
+    SkillData data;                 // Data associated with the skill (e.g., damage or heal amount)
+    struct Skill *next;             // Pointer to the next skill in the list
 } Skill;
 
 typedef struct {
-    Skill *head;
+    Skill *head;                    // Pointer to the first skill in the list
 } SkillList;
 
 typedef struct GameState {
-    Maze *maze;
-    SkillList *skills;
-    int player_hp;
-    char *lang;
-    int difficulty;
+    Maze *maze;                     // Pointer to the maze structure 
+    SkillList *skills;              // Pointer to the list of skills
+    int player_hp;                  // Player's health points
+    char *lang;                     // Language code for translations
+    int difficulty;                 // Game difficulty level
 } GameState;
 
 void game_loop(GameState *game);

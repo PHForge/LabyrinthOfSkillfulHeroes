@@ -5,6 +5,8 @@
 #include "../include/maze.h"
 #include "../include/utils.h"
 
+// Maze structure creation
+// This function initializes a new maze with walls and sets the player's starting position.
 Maze *create_maze(int rows, int cols) {
     Maze *maze = malloc(sizeof(Maze));
     maze->rows = rows;
@@ -22,6 +24,8 @@ Maze *create_maze(int rows, int cols) {
     return maze;
 }
 
+// Maze generation using recursive backtracking
+// This function generates a maze using a recursive backtracking algorithm, starting from the given row and column.
 void generate_maze(Maze *maze, int row, int col) {
     maze->grid[row][col] = '.';
     int directions[4][2] = {{-2, 0}, {2, 0}, {0, -2}, {0, 2}}; // Up, down, left, right
@@ -37,6 +41,8 @@ void generate_maze(Maze *maze, int row, int col) {
     maze->grid[maze->rows - 2][maze->cols - 2] = 'E'; // Exit
 }
 
+// Maze display
+// This function prints the maze to the console, showing walls, paths, the player, and the exit.
 void display_maze(Maze *maze) {
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
@@ -46,6 +52,8 @@ void display_maze(Maze *maze) {
     }
 }
 
+// Player movement
+// This function moves the player in the maze based on the input direction. It checks for boundaries and walls, updating the player's position accordingly.
 void move_player(Maze *maze, char direction, const char *lang) {
     int new_row = maze->player_row, new_col = maze->player_col;
     if (strcmp(lang, "fr") == 0) {
@@ -67,6 +75,8 @@ void move_player(Maze *maze, char direction, const char *lang) {
     }
 }
 
+// Free maze memory
+// This function deallocates the memory used by the maze structure, including the grid and the maze itself.
 void free_maze(Maze *maze) {
     if (!maze) return;
     for (int i = 0; i < maze->rows; i++) {

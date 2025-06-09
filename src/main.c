@@ -18,14 +18,16 @@
 #include "../include/utils.h"
 #include "../include/game.h"
 
+// Function to display the menu
+// This function displays the main menu of the game, allowing the player to choose between starting a new game, loading a saved game, changing settings, viewing credits, or quitting.
 void display_menu(GameState *game, Translation *trans, int trans_count) {
-    printf("\n === %s === \n\n", get_text(trans, trans_count, "MSG_WELCOME"));
-    printf("1. %s\n", get_text(trans, trans_count, "MENU_NEW_GAME"));
-    printf("2. %s\n", get_text(trans, trans_count, "MENU_LOAD"));
-    printf("3. %s\n", get_text(trans, trans_count, "MENU_SETTINGS"));
-    printf("4. %s\n", get_text(trans, trans_count, "MENU_CREDITS"));
-    printf("5. %s\n", get_text(trans, trans_count, "MENU_QUIT"));
-    printf("\n%s: ", get_text(trans, trans_count, "MENU_CHOICE"));
+    printf("\n === %s === \n\n", get_text(trans, trans_count, "MSG_WELCOME")); // Display welcome message
+    printf("1. %s\n", get_text(trans, trans_count, "MENU_NEW_GAME")); // Display option for new game
+    printf("2. %s\n", get_text(trans, trans_count, "MENU_LOAD")); // Display option for loading a game
+    printf("3. %s\n", get_text(trans, trans_count, "MENU_SETTINGS")); // Display option for settings
+    printf("4. %s\n", get_text(trans, trans_count, "MENU_CREDITS")); // Display option for credits
+    printf("5. %s\n", get_text(trans, trans_count, "MENU_QUIT")); // Display option for quitting the game
+    printf("\n%s: ", get_text(trans, trans_count, "MENU_CHOICE")); // Prompt for user input
 }
 
 int main() {
@@ -36,7 +38,9 @@ int main() {
         SetConsoleCP(CP_UTF8);      // Configure input for UTF-8
     #endif
 
+    // Display the game banner
     display_banner();
+    // Allocate memory for the game state and initialize its fields
     GameState *game = malloc(sizeof(GameState));
     game->maze = NULL;
     game->skills = malloc(sizeof(SkillList));
@@ -45,9 +49,11 @@ int main() {
     game->lang = str_duplicate("en");
     game->difficulty = 1;
 
+    // Load the translations for the default language and store the count of translations
     int trans_count;
     Translation *trans = load_language(game->lang, &trans_count);
 
+    // Display the main menu and handle user input
     int choice;
     while (1) {
         display_menu(game, trans, trans_count);
@@ -64,7 +70,7 @@ int main() {
                 add_skill(game->skills, create_skill("heal", heal, (SkillData){.heal_amount = 20}));
                 game_loop(game);
                 break;
-            case 2: // Load
+            case 2: // Load - Not working correctly in this version
                 free_maze(game->maze);
                 free_skills(game->skills);
                 free(game);
@@ -76,6 +82,7 @@ int main() {
                 }
                 break;
             case 3: // Settings
+                // Change language and difficulty settings
                 printf("\n%s (en / fr): ", get_text(trans, trans_count, "SETTINGS_LANG"));
                 char lang[3];
                 scanf("%2s", lang);
@@ -93,7 +100,7 @@ int main() {
                 display_credit();
                 break;
             case 5: // Quit
-                save_game(game, "../data/saves/game_slot1.save");
+                //save_game(game, "../data/saves/game_slot1.save"); // Not working in this version
                 free_maze(game->maze);
                 free_skills(game->skills);
                 free_translations(trans, trans_count);

@@ -44,6 +44,8 @@ void display_banner(void) {
     printf("\n                                                             by PHForge\n");
 }
 
+// Displays credits
+// This function displays a heartfelt message to my family, thanking them for their support and love.
 void display_credit(void) {
     printf("\nTo my beloved wife and son,\n");
     printf("Thank you for your endless love, patience, and support.\n");
@@ -52,6 +54,8 @@ void display_credit(void) {
     clear_input_buffer();
 }
 
+// Shuffles a 2D array of integers
+// This function randomly shuffles the elements of a 2D array, which can be useful for randomizing game elements like skill order or item placement.
 void shuffle(int arr[][2], int size) {
     srand(time(NULL));
     for (int i = size - 1; i > 0; i--) {
@@ -64,12 +68,16 @@ void shuffle(int arr[][2], int size) {
     }
 }
 
+// Duplicates a string
+// This function allocates memory for a new string and copies the contents of the original string into it. It is used to create independent copies of strings, such as language codes or skill names.
 char *str_duplicate(const char *str) {
     char *dup = malloc(strlen(str) + 1);
     strcpy(dup, str);
     return dup;
 }
 
+// Saves the game state to a file
+// This function writes the current game state, including the player's position, maze dimensions, maze data, skills, language, and difficulty level, to a specified file. It is used for saving progress so that players can continue later.
 void save_game(GameState *game, char *filename) {
     FILE *file = fopen(filename, "w");
     if (!file) return;
@@ -94,6 +102,8 @@ void save_game(GameState *game, char *filename) {
     fclose(file);
 }
 
+// Loads the game state from a file
+// This function reads the game state from a specified file, reconstructing the maze, player position, skills, language, and difficulty level. It returns a pointer to the loaded GameState structure or NULL if loading fails.
 GameState *load_game(char *filename) {
     FILE *file = fopen(filename, "r");
     if (!file) return NULL;
@@ -136,17 +146,23 @@ GameState *load_game(char *filename) {
     return game;
 }
 
+// Changes the game's language
+// This function updates the game's language code, freeing the previous language string and allocating a new one. It is used to switch between different languages for translations.
 void change_language(GameState *game, char *lang_code) {
     free(game->lang);
     game->lang = str_duplicate(lang_code);
 }
 
+// Sets the game's difficulty level
+// This function updates the game's difficulty level, ensuring it is within a valid range (1 to 3). It is used to adjust the game's challenge based on player preference.
 void set_difficulty(GameState *game, int difficulty) {
     if (difficulty >= 1 && difficulty <= 3) {
         game->difficulty = difficulty;
     }
 }
 
+// Loads translations from a language file
+// This function reads a language file and loads translations into a Translation structure. It counts the number of translations and returns a pointer to the loaded translations, along with the count. If the file cannot be opened or memory allocation fails, it returns NULL and sets the count to 0.
 Translation *load_language(char *lang_code, int *count) {
     char filename[50];
     sprintf(filename, "../data/translations/%s.lang", lang_code);
@@ -183,6 +199,8 @@ Translation *load_language(char *lang_code, int *count) {
     return trans;
 }
 
+// Retrieves the translated text for a given key
+// This function searches through the loaded translations for a specific key and returns the corresponding translated text. If the key is not found, it prints an error message and returns a default "Text not found" message.
 char *get_text(Translation *trans, int count, char *key) {
     for (int i = 0; i < count; i++) {
         if (strcmp(trans[i].key, key) == 0) return trans[i].value;
@@ -191,6 +209,8 @@ char *get_text(Translation *trans, int count, char *key) {
     return "Text not found";
 }
 
+// Frees the memory allocated for translations
+// This function iterates through the array of Translation structures, freeing the memory allocated for each key and value, and then frees the array itself. It is used to clean up resources when translations are no longer needed.
 void free_translations(Translation *trans, int count) {
     for (int i = 0; i < count; i++) {
         free(trans[i].key);

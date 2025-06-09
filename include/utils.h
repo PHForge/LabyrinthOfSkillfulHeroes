@@ -4,8 +4,8 @@
 #include "../include/game.h"
 
 typedef struct {
-    char *key;
-    char *value;
+    char *key;      // Translation key
+    char *value;    // Translated text
 } Translation;
 
 void clear_input_buffer(void);
